@@ -60,6 +60,7 @@ export const QuestionSection = styled.div`
   background-color: aliceblue;
   display: grid;
   grid-template-columns: repeat(1fr, 4);
+  grid-column-gap: 30px;
   grid-template-areas:
     "title title title userinfo"
     "indicator indicator indicator userinfo";
@@ -80,4 +81,7 @@ export const Indicator = styled.div`
 
 export const UserInfoSection = styled.div`
   grid-area: userinfo;
+  img{
+    border-radius: 100%;
+  }
 `;
