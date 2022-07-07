@@ -1,37 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "./style/component.css";
+import React, { useState, useEffect, useRef } from "react";
+import { Button, TrendingWrapper } from "./style/component.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTags } from "../reducers/tagsSlice";
+import { fetchQuesions } from "../reducers/questionsSlice";
 
-export default function TrendingTags() {
-  const [tags, setTags] = useState([]);
-  const [currentTag, setCurrentTag] = useState("");
-  const tagsUrl =
-    "https://api.stackexchange.com/2.3/tags?pagesize=10&order=desc&sort=popular&site=stackoverflow";
+export default function TrendingTags({ currentTag, setCurrentTag }) {
+  const dispatch = useDispatch();
+  const tags = useSelector((state) => state.tags);
+  const [firstTag, setFirstTag] = useState("");
+
   useEffect(() => {
-    fetch(tagsUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        setTags(data.items);
-        let firstTag = data.items[0].name;
-        setCurrentTag(firstTag);
-      });
+    setFirstTag(new Object(tags.tags[0]).name);
   }, []);
 
-  return (
-    <div>
-      <h2>Trending</h2>
-      {tags.map((tag) => {
-        return (
-          <Button
-            name={tag.name}
-            bgc={tag.name === currentTag ? "lightblue" : "#fff"}
-            color={tag.name === currentTag ? "#000" : "#636363"}
+  useEffect(() => {
+    setCurrentTag(firstTag);
+  }, [tags]);
 
-            onClick={() => setCurrentTag(tag.name)}
-          >
-            {tag.name}
-          </Button>
-        );
-      })}
-    </div>
+  function handleClick(e) {
+    setCurrentTag(e);
+  }
+
+  useEffect(() => {
+    let fetchURLQuestions = `https://api.stackexchange.com/2.3/questions?page=1&pagesize=20&order=desc&sort=activity&tagged=${currentTag}&site=stackoverflow`;
+    dispatch(fetchQuesions({ url: fetchURLQuestions }));
+  }, [currentTag]);
+
+  return (
+    <TrendingWrapper>
+      <h2>Trending</h2>
+      {tags.loading && <div>Loading...</div>}
+      {!tags.loading && tags.error ? <div>Error:{tags.error}</div> : null}
+      {!tags.loading &&
+        tags.tags.length &&
+        tags.tags.map((tag) => {
+          return (
+            <Button
+              name={tag.name}
+              value={tag.name}
+              bgc={tag.name === currentTag ? "lightblue" : "#fff"}
+              color={tag.name === currentTag ? "#000" : "#636363"}
+              onClick={(e) => handleClick(e.target.value)}
+            >
+              {tag.name}
+            </Button>
+          );
+        })}
+    </TrendingWrapper>
   );
 }
