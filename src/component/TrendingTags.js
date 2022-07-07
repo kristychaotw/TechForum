@@ -21,11 +21,6 @@ export default function TrendingTags({ currentTag, setCurrentTag }) {
     setCurrentTag(e);
   }
 
-  useEffect(() => {
-    let fetchURLQuestions = `https://api.stackexchange.com/2.3/questions?page=1&pagesize=20&order=desc&sort=activity&tagged=${currentTag}&site=stackoverflow`;
-    dispatch(fetchQuesions({ url: fetchURLQuestions }));
-  }, [currentTag]);
-
   return (
     <TrendingWrapper>
       <h2>Trending</h2>

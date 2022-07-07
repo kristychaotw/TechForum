@@ -5,13 +5,11 @@ import ReactDOM from "react-dom";
 import App from "./component/App";
 import questionsSlice from "./reducers/questionsSlice";
 import tagsSlice from "./reducers/tagsSlice";
-import paramsSlice from "./reducers/paramsSlice";
 
 const store = configureStore({
   reducer: {
     questions: questionsSlice,
     tags: tagsSlice,
-    params: paramsSlice,
   },
 });
 

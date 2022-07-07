@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { SearchingBarWrapper } from "./style/component.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchTags } from "../reducers/tagsSlice";
 
 export default function SearchingBar() {
