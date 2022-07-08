@@ -1,5 +1,9 @@
 # TechForum - Find Programming Solutions from Stack Overflow Using TAGS
 
+Web View             |  Mobile View
+:-------------------------:|:-------------------------:
+![螢幕擷取畫面 2022-07-08 155214](https://user-images.githubusercontent.com/95632624/177945220-c8f95e26-1b01-4a98-b15a-d51aedf04d24.png)| ![螢幕擷取畫面 2022-07-08 155847](https://user-images.githubusercontent.com/95632624/177945698-7c4d9344-1f9f-4c34-a032-30f02dfaedb8.png)
+
 ## Tech Stack
 * React hooks
 * React Redux
