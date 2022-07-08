@@ -20,7 +20,6 @@ export default function App() {
 
   let fetchTagsURL;
   let fetchURLQuestions;
-  console.log("pagenum", pageNumber);
 
   useEffect(() => {
     if (searchWordInput == null) {
@@ -39,7 +38,7 @@ export default function App() {
 
   return (
     <Container>
-      {/* <GlobalStyle /> */}
+      <GlobalStyle />
       <SearchingBar setSearchWordInput={setSearchWordInput} />
       <TrendingTags currentTag={currentTag} setCurrentTag={setCurrentTag} />
       <QuestionListing setPageNumber={setPageNumber} />

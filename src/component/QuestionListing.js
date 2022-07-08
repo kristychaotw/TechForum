@@ -13,8 +13,7 @@ import {
 export default function QuestionListing({ setPageNumber }) {
   const questions = useSelector((state) => state.questions.questions); // has_more, items
   const questionItems = useSelector((state) => state.questions.questionItems);
-  console.log("qitem", questionItems);
-  const observer = useRef()
+  const observer = useRef();
 
   const lastQuestionRef = useCallback(
     (node) => {
@@ -22,23 +21,20 @@ export default function QuestionListing({ setPageNumber }) {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && questions.has_more) {
-          console.log("visible");
           setPageNumber((prevNumber) => prevNumber + 1);
         }
       });
       if (node) observer.current.observe(node);
-      console.log("node", node);
     },
     [questions.loading, questions.has_more]
   );
 
   function handleClick(e) {
-    // window.open(e);
+    window.open(e);
   }
 
   return (
     <>
-      {console.log("questions", questions)}
       <div>{questions.loading && "Loading..."}</div>
       <div>
         {!questions.loading &&
@@ -47,7 +43,7 @@ export default function QuestionListing({ setPageNumber }) {
       </div>
       {questions.items !== undefined &&
         questionItems.map((q, index) => {
-          if (questions.items.length === index + 1) {
+          if (questionItems.length === index + 1) {
             return (
               <QuestionWrapper
                 ref={lastQuestionRef}
