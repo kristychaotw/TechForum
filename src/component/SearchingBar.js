@@ -1,16 +1,12 @@
 import React, { useRef } from "react";
 import { SearchingBarWrapper } from "./style/component.css";
 import { useDispatch } from "react-redux";
-import { fetchTags } from "../reducers/tagsSlice";
 
-export default function SearchingBar() {
+export default function SearchingBar({ setSearchWordInput }) {
   const searchRef = useRef();
-  const dispatch = useDispatch();
 
   function handleSubmit() {
-    let searchWordInput = searchRef.current.value;
-    let fetchURLTags = `https://api.stackexchange.com/2.3/tags?pagesize=10&order=desc&sort=popular&inname=${searchWordInput}&site=stackoverflow`;
-    dispatch(fetchTags({ url: fetchURLTags }));
+    setSearchWordInput(searchRef.current.value);
   }
   return (
     <SearchingBarWrapper>

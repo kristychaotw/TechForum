@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchQuesions } from "../reducers/questionsSlice";
+import { useSelector } from "react-redux";
 import {
   P,
   Indicator,
@@ -12,10 +11,11 @@ import {
 } from "./style/component.css";
 
 export default function QuestionListing({ setPageNumber }) {
-  const questions = useSelector((state) => state.questions);
-  console.log("questions", questions);
+  const questions = useSelector((state) => state.questions.questions); // has_more, items
+  const questionItems = useSelector((state) => state.questions.questionItems);
+  console.log("qitem", questionItems);
+  const observer = useRef()
 
-  const observer = useRef();
   const lastQuestionRef = useCallback(
     (node) => {
       if (questions.loading) return;
@@ -26,7 +26,7 @@ export default function QuestionListing({ setPageNumber }) {
           setPageNumber((prevNumber) => prevNumber + 1);
         }
       });
-      if (node) observer.current.observer(node);
+      if (node) observer.current.observe(node);
       console.log("node", node);
     },
     [questions.loading, questions.has_more]
@@ -38,17 +38,16 @@ export default function QuestionListing({ setPageNumber }) {
 
   return (
     <>
+      {console.log("questions", questions)}
       <div>{questions.loading && "Loading..."}</div>
       <div>
         {!questions.loading &&
           questions.error &&
           "Error:" + `${questions.error}`}
       </div>
-
-      {!questions.loading &&
-        questions.questions.length &&
-        questions.questions.map((q, index) => {
-          if (q.length === index + 1) {
+      {questions.items !== undefined &&
+        questionItems.map((q, index) => {
+          if (questions.items.length === index + 1) {
             return (
               <QuestionWrapper
                 ref={lastQuestionRef}

@@ -4,16 +4,16 @@ import axios from "axios";
 const initialState = {
   loading: false,
   questions: [],
+  questionItems: [],
   error: "",
 };
-
 
 export const fetchQuesions = createAsyncThunk(
   "questions/fetchQuestions",
   async (params) => {
     try {
       const res = await axios.get(params.url);
-      return [...res.data.items];
+      return res.data;
     } catch (err) {
       return err.message;
     }
@@ -29,7 +29,8 @@ const questionsSlice = createSlice({
     });
     builder.addCase(fetchQuesions.fulfilled, (state, action) => {
       state.loading = false;
-      state.questions = action.payload;
+      state.questions = { ...state.questions, ...action.payload };
+      state.questionItems = [...state.questionItems, ...action.payload.items];
       state.error = "";
     });
     builder.addCase(fetchQuesions.rejected, (state, action) => {
@@ -38,6 +39,14 @@ const questionsSlice = createSlice({
       state.error = action.error.message;
     });
   },
+  reducers: {
+    clearupValue: (state) => {
+      state.questions = [];
+      state.questionItems = [];
+    },
+  },
 });
+
+export const { clearupValue } = questionsSlice.actions;
 
 export default questionsSlice.reducer;

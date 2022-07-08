@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 100%;
   padding: 0 20px;
   max-width: 1200px;
+  margin: 0 auto;
   box-sizing: border-box;
 
   @media screen and (max-width: 600px) {
@@ -14,13 +15,16 @@ export const Container = styled.div`
 //Searching Bar
 export const SearchingBarWrapper = styled.div`
   width: 100%;
+  max-width: 1200px;
   position: fixed;
   top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0%);
   box-sizing: border-box;
   input {
     border: 2px solid #b7d7e2;
-    padding: 10px;
     box-sizing: border-box;
+    padding: 10px;
   }
   input[type="text"] {
     width: 80%;
@@ -32,7 +36,7 @@ export const SearchingBarWrapper = styled.div`
   }
 
   input[type="submit"] {
-    width: 10%;
+    width: 20%;
     background-color: #b7d7e2;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
@@ -40,7 +44,7 @@ export const SearchingBarWrapper = styled.div`
 
   @media screen and (max-width: 600px) {
     input[type="text"] {
-      width: 60%;
+      width: 70%;
     }
     input[type="submit"] {
       width: 30%;
@@ -121,7 +125,7 @@ export const IndicatorWrapper = styled.div`
 export const Indicator = styled.div`
   text-align: center;
   h4 {
-    color: #963a39;
+    color: #902f3b;
   }
   p {
     width: 80px;

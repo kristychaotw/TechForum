@@ -1,20 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, TrendingWrapper } from "./style/component.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTags } from "../reducers/tagsSlice";
-import { fetchQuesions } from "../reducers/questionsSlice";
+import { useSelector } from "react-redux";
 
 export default function TrendingTags({ currentTag, setCurrentTag }) {
-  const dispatch = useDispatch();
   const tags = useSelector((state) => state.tags);
-  const [firstTag, setFirstTag] = useState("");
 
   useEffect(() => {
-    setFirstTag(new Object(tags.tags[0]).name);
-  }, []);
-
-  useEffect(() => {
-    setCurrentTag(firstTag);
+    setCurrentTag(new Object(tags.tags[0]).name);
   }, [tags]);
 
   function handleClick(e) {

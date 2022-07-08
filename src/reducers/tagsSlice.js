@@ -10,7 +10,7 @@ const initialState = {
 export const fetchTags = createAsyncThunk("tags/fetchTags", async (params) => {
   try {
     const res = await axios.get(params.url);
-    return [...res.data.items];
+    return res.data.items;
   } catch (err) {
     return err.message;
   }
