@@ -8,7 +8,7 @@
 
 ## Use Guide
 You can access to this application in 2 ways: 
-1. Visit the website ( I
+1. Visit the website (In Progress)
 2. Clone this repo
 
 ### Steps for cloning this repo
