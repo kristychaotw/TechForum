@@ -13,7 +13,8 @@ You can access to this application in 2 ways:
 
 ### Steps for cloning this repo
 1. Clone this repo
-2. Find 'index.html' and open it in the browser
+2. Use 'npm install' to install the required dependencies
+3. Find 'index.html' in dist file and open it in the browser
 
 ## Main Features
 1. **Search Bar**     - Enter a keyword to generate tags that contain this keyword
