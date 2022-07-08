@@ -1,4 +1,4 @@
-# TechForum - Find programming solutions from Stack Overflow using TAGS
+# TechForum - Find Programming Solutions from Stack Overflow Using TAGS
 
 ## Tech Stack
 * React hooks
