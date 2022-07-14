@@ -15,6 +15,7 @@ export const Container = styled.div`
 //Searching Bar
 export const SearchingBarWrapper = styled.div`
   width: 100%;
+  padding: 0 10px;
   max-width: 1200px;
   position: fixed;
   top: 10px;

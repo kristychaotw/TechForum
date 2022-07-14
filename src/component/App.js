@@ -6,7 +6,7 @@ import TrendingTags from "./TrendingTags";
 import { Container } from "./style/component.css";
 import { clearupValue, fetchQuesions } from "../reducers/questionsSlice";
 import { fetchTags } from "../reducers/tagsSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -14,12 +14,13 @@ export default function App() {
   const [pageNumber, setPageNumber] = useState(1);
   const [searchWordInput, setSearchWordInput] = useState("");
 
+
   useEffect(() => {
     dispatch(clearupValue());
   }, [currentTag, searchWordInput]);
 
   let fetchTagsURL;
-  let fetchURLQuestions;
+  let fetchQuestionsURL;
 
   useEffect(() => {
     if (searchWordInput == null) {
@@ -31,9 +32,9 @@ export default function App() {
   }, [searchWordInput]);
 
   useEffect(() => {
-    fetchURLQuestions = `https://api.stackexchange.com/2.3/questions?page=${pageNumber}&pagesize=20&order=desc&sort=activity&tagged=${currentTag}&site=stackoverflow`;
+    fetchQuestionsURL = `https://api.stackexchange.com/2.3/questions?page=${pageNumber}&pagesize=20&order=desc&sort=activity&site=stackoverflow&tagged=${currentTag}`;
     if (currentTag !== null && currentTag !== undefined)
-      dispatch(fetchQuesions({ url: fetchURLQuestions }));
+      dispatch(fetchQuesions({ url: fetchQuestionsURL }));
   }, [currentTag, pageNumber]);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { Button, TrendingWrapper } from "./style/component.css";
 import { useSelector } from "react-redux";
 
