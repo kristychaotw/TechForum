@@ -2,8 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
-body{
+html{
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 html, body, div, span, applet, object, iframe,
