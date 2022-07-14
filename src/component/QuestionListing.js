@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
 import {
   P,
@@ -11,8 +11,9 @@ import {
 } from "./style/component.css";
 
 export default function QuestionListing({ setPageNumber }) {
-  const questions = useSelector((state) => state.questions.questions); // has_more, items
-  const questionItems = useSelector((state) => state.questions.questionItems);
+  const questionData = useSelector((state) => state.questions);
+  const questions = questionData.questions; // has_more, items
+  const questionItems = questionData.questionItems;
   const observer = useRef();
 
   const lastQuestionRef = useCallback(
@@ -35,11 +36,11 @@ export default function QuestionListing({ setPageNumber }) {
 
   return (
     <>
-      <div>{questions.loading && "Loading..."}</div>
+      <div>{questionData.loading && "Loading..."}</div>
       <div>
-        {!questions.loading &&
-          questions.error &&
-          "Error:" + `${questions.error}`}
+        {!questionData.loading &&
+          questionData.error &&
+          "Error:" + `${questionData.error}`}
       </div>
       {questions.items !== undefined &&
         questionItems.map((q, index) => {
