@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { SearchingBarWrapper } from "./style/component.css";
-import { useDispatch } from "react-redux";
 
 export default function SearchingBar({ setSearchWordInput }) {
   const searchRef = useRef();
