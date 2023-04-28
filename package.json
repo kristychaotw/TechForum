@@ -21,7 +21,7 @@
     "react-redux": "^8.0.2",
     "save": "^2.5.0",
     "styled-components": "^5.3.5",
-    "webpack": "^5.73.0"
+    "webpack": "^5.76.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
